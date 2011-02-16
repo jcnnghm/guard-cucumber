@@ -3,6 +3,7 @@ module Guard
     module Runner
       class << self
         def run(paths, options = {})
+	  paths = ['features'] if options[:run_all]
           message = options[:message] || (paths == ['features'] ? 'Run all Cucumber features' : "Run Cucumber features #{ paths.join(' ') }")
           UI.info message, :reset => true
           system(cucumber_command(paths, options))
